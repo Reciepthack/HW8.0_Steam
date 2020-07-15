@@ -1,27 +1,21 @@
 package main.java.com.homework8.random;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class RandomIntegerStream {
 
     public static void randomIntegerStreamOperations() {
-        List<Integer> randomList = generateRandomIntegerList();
+        List<Integer> randomList = new Random().ints(15,1,350).boxed().collect(Collectors.toList());
         System.out.print("Random list values: ");
         System.out.println(randomList);
 
         printMinInRandomList(randomList);
         printMaxInRandomList(randomList);
-        printAllValuesMultiplesOf(randomList, 2);
+        printAllValuesMultiplesOfTwo(randomList);
         increaseAndPrintAllValuesInList(randomList, 10);
-    }
-
-    public static List<Integer> generateRandomIntegerList() {
-        return Stream.generate(()
-                -> (int) (Math.random() * 100))
-                .limit(15)
-                .collect(Collectors.toList());
     }
 
     public static void printMinInRandomList(List<Integer> list) {
@@ -38,8 +32,8 @@ public class RandomIntegerStream {
                 .ifPresent(System.out::println);
     }
 
-    public static void printAllValuesMultiplesOf(List<Integer> list, int divider) {
-        System.out.print("All values are multiples of " + divider + ": ");
+    public static void printAllValuesMultiplesOfTwo(List<Integer>  list) {
+        System.out.print("All values are multiples of two : ");
         list.stream()
                 .filter(value -> value % 2 == 0)
                 .forEach(value -> System.out.print(value + "; "));
