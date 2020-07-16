@@ -6,15 +6,14 @@ import java.util.stream.Collectors;
 
 public class RandomIntegerStream {
 
-    public static void randomIntegerStreamOperations() {
-         int streamSize = 15;
-         int randomNumOrigin = 0;
-         int getRandomNumBound = 350;
-        List<Integer> randomList = new Random().ints(streamSize,randomNumOrigin,getRandomNumBound).boxed().collect(Collectors.toList());
+       private static  int streamSize = 15;
+       private static  int randomNumOrigin = 0;
+       private static  int getRandomNumBound = 350;
+       private static final List<Integer> randomList = new Random().ints(streamSize,randomNumOrigin,getRandomNumBound).boxed().collect(Collectors.toList());
+
+        public static void randomIntegerStreamOperations() {
         System.out.print("Random list values: ");
         System.out.println(randomList);
-
-
         printMinInRandomList(randomList);
         printMaxInRandomList(randomList);
         printAllValuesMultiplesOfTwo(randomList, 2);
