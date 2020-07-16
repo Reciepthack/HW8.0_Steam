@@ -3,18 +3,21 @@ package main.java.com.homework8.random;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RandomIntegerStream {
 
     public static void randomIntegerStreamOperations() {
-        List<Integer> randomList = new Random().ints(15,1,350).boxed().collect(Collectors.toList());
+         int streamSize = 15;
+         int randomNumOrigin = 0;
+         int getRandomNumBound = 350;
+        List<Integer> randomList = new Random().ints(streamSize,randomNumOrigin,getRandomNumBound).boxed().collect(Collectors.toList());
         System.out.print("Random list values: ");
         System.out.println(randomList);
 
+
         printMinInRandomList(randomList);
         printMaxInRandomList(randomList);
-        printAllValuesMultiplesOfTwo(randomList);
+        printAllValuesMultiplesOfTwo(randomList, 2);
         increaseAndPrintAllValuesInList(randomList, 10);
     }
 
@@ -32,12 +35,13 @@ public class RandomIntegerStream {
                 .ifPresent(System.out::println);
     }
 
-    public static void printAllValuesMultiplesOfTwo(List<Integer>  list) {
-        System.out.print("All values are multiples of two : ");
+    public static void printAllValuesMultiplesOfTwo(List<Integer>  list, int value) {
+        System.out.print("All values are multiples of two : " + value);
         list.stream()
-                .filter(value -> value % 2 == 0)
-                .forEach(value -> System.out.print(value + "; "));
+                .filter(randomList -> randomList % value == 0)
+                .forEach(System.out::println);
         System.out.println();
+
     }
 
     public static void increaseAndPrintAllValuesInList(List<Integer> list, int valueForIncrease) {
